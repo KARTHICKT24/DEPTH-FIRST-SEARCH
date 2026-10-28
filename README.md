@@ -103,9 +103,56 @@ G F <BR>
 <hr>
 ['0', '1', '2', '3', '4']
 <hr>
-<h3>Result:</h3>
-<hr>
-<p>Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
+
+## PROGRAM:
+```
+from collections import deque, defaultdict
+
+def bfs(graph, start, visited, path):
+    queue = deque([start])
+    visited[start] = True
+
+    while queue:
+        tmpnode = queue.popleft()
+        path.append(tmpnode)
+
+        for neighbour in sorted(graph[tmpnode]):
+            if not visited[neighbour]:
+                queue.append(neighbour)
+                visited[neighbour] = True
+
+    return path
+
+
+graph = defaultdict(list)
+
+n, e = map(int, input().split())
+
+for i in range(e):
+    u, v = input().split()
+    graph[u].append(v)
+    graph[v].append(u)
+
+start = '0' if '0' in graph else 'A'
+
+path = []
+visited = defaultdict(bool)
+
+traversedpath = bfs(graph, start, visited, path)
+print(traversedpath)
+```
+
+## OUTPUT:
+
+# 1
+<img width="732" height="251" alt="image" src="https://github.com/user-attachments/assets/2a57b521-d4c0-4890-a1c5-f33df38f1118" />
+
+# 2
+<img width="462" height="181" alt="image" src="https://github.com/user-attachments/assets/7fb8ac91-a755-4c82-8f9e-dba2363e807e" />
+
+
+## RESULT:
+Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
 
 
 
